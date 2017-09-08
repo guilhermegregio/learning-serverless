@@ -1,5 +1,6 @@
 import * as dynamoDbLib from './libs/dynamodb-lib';
 import { success, failure } from './libs/response-lib';
+import awaitTo from './libs/await-response-error';
 
 export async function main(event, context, callback) {
   const params = {
@@ -13,17 +14,15 @@ export async function main(event, context, callback) {
     },
   };
 
-  try {
-    const result = await dynamoDbLib.call('get', params);
+  const [err, result] = await awaitTo(dynamoDbLib.call('get', params));
+
+  if (!err) {
     if (result.Item) {
-      // Return the retrieved item
       callback(null, success(result.Item));
-    }
-    else {
+    } else {
       callback(null, failure({ status: false, error: 'Item not found.' }));
     }
-  }
-  catch (e) {
+  } else {
     callback(null, failure({ status: false }));
   }
 };

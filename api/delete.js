@@ -1,5 +1,6 @@
 import * as dynamoDbLib from './libs/dynamodb-lib';
 import { success, failure } from './libs/response-lib';
+import awaitTo from './libs/await-response-error';
 
 export async function main(event, context, callback) {
   const params = {
@@ -13,11 +14,11 @@ export async function main(event, context, callback) {
     },
   };
 
-  try {
-    const result = await dynamoDbLib.call('delete', params);
+  const [err, result] = await awaitTo(dynamoDbLib.call('delete', params));
+
+  if (!err) {
     callback(null, success({ status: true }));
-  }
-  catch (e) {
+  } else {
     callback(null, failure({ status: false }));
   }
 };

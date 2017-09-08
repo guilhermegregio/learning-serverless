@@ -1,5 +1,6 @@
 import * as dynamoDbLib from './libs/dynamodb-lib';
 import { success, failure } from './libs/response-lib';
+import awaitTo from './libs/await-response-error';
 
 export async function main(event, context, callback) {
   const params = {
@@ -14,12 +15,12 @@ export async function main(event, context, callback) {
     }
   };
 
-  try {
-    const result = await dynamoDbLib.call('query', params);
-    // Return the matching list of items in response body
+  const [err, result] = await awaitTo(dynamoDbLib.call('query', params));
+
+  if (!err) {
     callback(null, success(result.Items));
   }
-  catch (e) {
+  else {
     callback(null, failure({ status: false }));
   }
 };
