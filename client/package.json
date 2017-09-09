@@ -18,6 +18,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync build/ s3://notes-app-client-gregio --delete"
+    "deploy": "aws s3 sync build/ s3://notes-app-client-gregio --delete",
+    "postdeploy": "npm run invalid-cache:primary && npm run invalid-cache:www",
+    "invalid-cache:primary": "aws cloudfront create-invalidation --distribution-id E1MH2R9NBDWKF4 --paths \"/*\"",
+    "invalid-cache:www": "aws cloudfront create-invalidation --distribution-id EZD8FSTWOHTFZ --paths \"/*\""
   }
 }
