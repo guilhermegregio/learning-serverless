@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
-import Routes from "./Routes";
-import RouteNavItem from "./components/RouteNavItem";
-import { authUser, signOutUser } from "./libs/awsLib";
+import Routes from "../components/Routes";
+import RouteNavItem from "../components/RouteNavItem";
+import { authUser, signOutUser } from "../libs/awsLib";
 
 class App extends Component {
   state = {
