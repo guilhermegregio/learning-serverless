@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
-import "./App.css";
+import styled from 'styled-components'
 import Routes from "../components/Routes";
 import RouteNavItem from "../components/RouteNavItem";
 import { authUser, signOutUser } from "../libs/awsLib";
+
+const AppContainer = styled.div`
+  margin-top: 15px;
+`
+
+const NavBrandStyled = styled(Navbar.Brand)`
+  font-weight: bold;
+`
 
 class App extends Component {
   state = {
@@ -45,12 +53,12 @@ class App extends Component {
 
     return (
       !this.state.isAuthenticating &&
-      <div className="App container">
+      <AppContainer className="App container">
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
-            <Navbar.Brand>
+            <NavBrandStyled>
               <Link to="/">Scratch</Link>
-            </Navbar.Brand>
+            </NavBrandStyled>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
@@ -69,7 +77,7 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <Routes childProps={childProps} />
-      </div>
+      </AppContainer>
     );
   }
 }
