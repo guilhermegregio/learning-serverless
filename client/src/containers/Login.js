@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import styled from 'styled-components'
 import LoaderButton from "../components/LoaderButton";
 import {
   CognitoUserPool,
@@ -7,7 +8,21 @@ import {
   CognitoUser
 } from "amazon-cognito-identity-js";
 import config from "../config";
-import "./Login.css";
+
+
+const LoginContainer = styled.div`
+  @media all and (min-width: 480px) {
+    padding: 60px 0;
+  }
+`
+
+const Form = styled.form`
+  @media all and (min-width: 480px) {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+`
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -46,8 +61,8 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
+      <LoginContainer className="Login">
+        <Form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
@@ -74,8 +89,8 @@ export default class Login extends Component {
             text="Login"
             loadingText="Logging in…"
           />
-        </form>
-      </div>
+        </Form>
+      </LoginContainer>
     );
   }
 
