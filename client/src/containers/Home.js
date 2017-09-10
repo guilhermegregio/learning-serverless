@@ -1,8 +1,43 @@
 import React, { Component } from "react";
 import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import styled from 'styled-components'
 import { invokeApig } from '../libs/awsLib';
-import "./Home.css";
+
+const Lander = styled.div`
+  padding: 80px 0;
+  text-align: center;
+`
+
+const Title = styled.h1`
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+`
+
+const Text = styled.p`
+  color: #999;
+`
+
+const LinkContainer = styled.div`
+  padding-top: 20px;
+  a:first-child {
+    margin-right: 20px;
+  }
+`
+
+const ListGroupItemStyled = styled(ListGroupItem)`
+  h4 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    overflow: hidden;
+    line-height: 1.5;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  p {
+    color: #666;
+  }
+`
 
 export default class Home extends Component {
   constructor(props) {
@@ -37,15 +72,15 @@ export default class Home extends Component {
     return [{}].concat(notes).map(
       (note, i) =>
         i !== 0
-          ? <ListGroupItem
+          ? <ListGroupItemStyled
             key={note.noteId}
             href={`/notes/${note.noteId}`}
             onClick={this.handleNoteClick}
             header={note.content.trim().split("\n")[0]}
           >
             {"Created: " + new Date(note.createdAt).toLocaleString()}
-          </ListGroupItem>
-          : <ListGroupItem
+          </ListGroupItemStyled>
+          : <ListGroupItemStyled
             key="new"
             href="/notes/new"
             onClick={this.handleNoteClick}
@@ -53,7 +88,7 @@ export default class Home extends Component {
             <h4>
               <b>{"\uFF0B"}</b> Create a new note
               </h4>
-          </ListGroupItem>
+          </ListGroupItemStyled>
     );
   }
 
@@ -64,18 +99,18 @@ export default class Home extends Component {
 
   renderLander() {
     return (
-      <div className="lander">
-        <h1>Scratch</h1>
-        <p>A simple note taking app</p>
-        <div>
+      <Lander className="lander">
+        <Title>Scratch</Title>
+        <Text>A simple note taking app</Text>
+        <LinkContainer>
           <Link to="/login" className="btn btn-info btn-lg">
             Login
         </Link>
           <Link to="/signup" className="btn btn-success btn-lg">
             Signup
         </Link>
-        </div>
-      </div>
+        </LinkContainer>
+      </Lander>
     );
   } 
 
