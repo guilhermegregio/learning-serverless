@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import styled from 'styled-components';
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import { invokeApig, s3Upload } from "../libs/awsLib";
-import "./NewNote.css";
+
+const Form  = styled.form`
+  padding-bottom: 15px;
+`
+
+const Textarea = styled(FormGroup)`
+  height: 300px;
+  font-size: 24px;
+`
 
 export default class NewNote extends Component {
   constructor(props) {
@@ -68,14 +77,14 @@ export default class NewNote extends Component {
   render() {
     return (
       <div className="NewNote">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="content">
-            <FormControl
+        <Form onSubmit={this.handleSubmit}>
+          <Textarea controlId="content">
+            <Textarea
               onChange={this.handleChange}
               value={this.state.content}
               componentClass="textarea"
             />
-          </FormGroup>
+          </Textarea>
           <FormGroup controlId="file">
             <ControlLabel>Attachment</ControlLabel>
             <FormControl onChange={this.handleFileChange} type="file" />
@@ -90,7 +99,7 @@ export default class NewNote extends Component {
             text="Create"
             loadingText="Creating…"
           />
-        </form>
+        </Form>
       </div>
     );
   }
