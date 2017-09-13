@@ -1,7 +1,15 @@
 import React from "react";
-import "./NotFound.css";
+import styled from 'styled-components';
 
-export default () =>
-  <div className="NotFound">
+const NotFoundContainer = styled.div`
+  padding-top: 100px;
+  text-align: center;
+`
+
+const NotFound = () => (
+  <NotFoundContainer className="NotFound">
     <h3>Sorry, page not found!</h3>
-  </div>;
+  </NotFoundContainer>
+);
+
+export default NotFound;
