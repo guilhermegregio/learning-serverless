@@ -9,9 +9,28 @@ import {
   AuthenticationDetails,
   CognitoUserPool
 } from "amazon-cognito-identity-js";
+import styled from 'styled-components';
 import config from "../config";
 import LoaderButton from "../components/LoaderButton";
-import "./Signup.css";
+
+const SugnupContainer = styled.div`
+  @media all and (min-width: 480px) {
+    padding: 60px 0;
+  }
+
+  .help-block {
+    font-size: 14px;
+    padding-bottom: 10px;
+    color: #999;
+  }
+`
+
+const Form = styled.div`
+  @media all and (min-width: 480px) {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+`
 
 export default class Signup extends Component {
   constructor(props) {
@@ -130,7 +149,7 @@ export default class Signup extends Component {
 
   renderConfirmationForm() {
     return (
-      <form onSubmit={this.handleConfirmationSubmit}>
+      <Form onSubmit={this.handleConfirmationSubmit}>
         <FormGroup controlId="confirmationCode" bsSize="large">
           <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
@@ -150,13 +169,13 @@ export default class Signup extends Component {
           text="Verify"
           loadingText="Verifying…"
         />
-      </form>
+      </Form>
     );
   }
 
   renderForm() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
           <ControlLabel>Email</ControlLabel>
           <FormControl
@@ -191,17 +210,17 @@ export default class Signup extends Component {
           text="Signup"
           loadingText="Signing up…"
         />
-      </form>
+      </Form>
     );
   }
 
   render() {
     return (
-      <div className="Signup">
+      <SugnupContainer className="Signup">
         {this.state.newUser === null
           ? this.renderForm()
           : this.renderConfirmationForm()}
-      </div>
+      </SugnupContainer>
     );
   }
 }
