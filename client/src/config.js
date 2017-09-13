@@ -1,6 +1,6 @@
 export default {
   apiGateway: {
-    URL: "https://4yt04swx74.execute-api.us-east-1.amazonaws.com/prod",
+    URL: "https://api.thegregio.com/v1",
     REGION: "us-east-1"
   },
   s3: {
