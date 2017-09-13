@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import styled from 'styled-components';
 import { invokeApig, s3Upload } from "../libs/awsLib";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
-import "./Notes.css";
+
+const Form  = styled.form`
+  padding-bottom: 15px;
+`
+
+const FormGroupStyled = styled(FormGroup)`
+  textarea{
+    height: 300px;
+    font-size: 24px;
+  }
+`
 
 export default class Notes extends Component {
   constructor(props) {
@@ -126,14 +137,14 @@ export default class Notes extends Component {
     return (
       <div className="Notes">
         {this.state.note &&
-          <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId="content">
+          <Form onSubmit={this.handleSubmit}>
+            <FormGroupStyled controlId="content">
               <FormControl
                 onChange={this.handleChange}
                 value={this.state.content}
                 componentClass="textarea"
               />
-            </FormGroup>
+            </FormGroupStyled>
             {this.state.note.attachment &&
               <FormGroup>
                 <ControlLabel>Attachment</ControlLabel>
@@ -171,7 +182,7 @@ export default class Notes extends Component {
               text="Delete"
               loadingText="Deleting…"
             />
-          </form>}
+          </Form>}
       </div>
     );
   }

@@ -9,9 +9,11 @@ const Form  = styled.form`
   padding-bottom: 15px;
 `
 
-const Textarea = styled(FormGroup)`
-  height: 300px;
-  font-size: 24px;
+const FormGroupStyled = styled(FormGroup)`
+  textarea{
+    height: 300px;
+    font-size: 24px;
+  }
 `
 
 export default class NewNote extends Component {
@@ -78,13 +80,13 @@ export default class NewNote extends Component {
     return (
       <div className="NewNote">
         <Form onSubmit={this.handleSubmit}>
-          <Textarea controlId="content">
-            <Textarea
+          <FormGroupStyled controlId="content">
+            <FormControl
               onChange={this.handleChange}
               value={this.state.content}
               componentClass="textarea"
             />
-          </Textarea>
+          </FormGroupStyled>
           <FormGroup controlId="file">
             <ControlLabel>Attachment</ControlLabel>
             <FormControl onChange={this.handleFileChange} type="file" />
