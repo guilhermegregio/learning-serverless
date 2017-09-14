@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import styled from 'styled-components';
 import { invokeApig, s3Upload } from "../libs/awsLib";
-import LoaderButton from "../components/LoaderButton";
+import LoaderButton from "../atoms/LoaderButton";
 import config from "../config";
 
 const Form  = styled.form`

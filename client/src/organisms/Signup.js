@@ -11,7 +11,7 @@ import {
 } from "amazon-cognito-identity-js";
 import styled from 'styled-components';
 import config from "../config";
-import LoaderButton from "../components/LoaderButton";
+import LoaderButton from "../atoms/LoaderButton";
 
 const SugnupContainer = styled.div`
   @media all and (min-width: 480px) {

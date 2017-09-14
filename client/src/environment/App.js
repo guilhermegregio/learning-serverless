@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import styled from 'styled-components'
-import Routes from "../components/Routes";
-import RouteNavItem from "../components/RouteNavItem";
+import Routes from "../organisms/Routes";
+import RouteNavItem from "../molecules/RouteNavItem";
 import { authUser, signOutUser } from "../libs/awsLib";
 
 const AppContainer = styled.div`
